@@ -1,5 +1,5 @@
 let pianoContainer = document.getElementsByClassName("piano-container");
-const base = ;
+const base = "./audio";
 window.onload = () => {
   //24keys
   for (let index = 1; index <= 24; index++) {
