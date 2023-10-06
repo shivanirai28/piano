@@ -1,86 +1,161 @@
-body {
-  padding: 0;
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+* {
   margin: 0;
-  background-color: #2887e3;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
-.piano-container {
+body {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #e3f2fd;
+}
+.wrapper {
+  padding: 35px 40px;
+  border-radius: 20px;
+  background: #141414;
+}
+.wrapper header {
+  display: flex;
+  color: #b2b2b2;
+  align-items: center;
+  justify-content: space-between;
+}
+header h2 {
+  font-size: 1.6rem;
+}
+header .column {
+  display: flex;
+  align-items: center;
+}
+header span {
+  font-weight: 500;
+  margin-right: 15px;
+  font-size: 1.19rem;
+}
+header input {
+  outline: none;
+  border-radius: 30px;
+}
+.volume-slider input {
+  accent-color: #fff;
+}
+.keys-checkbox input {
+  height: 30px;
+  width: 60px;
+  cursor: pointer;
+  appearance: none;
+  position: relative;
+  background: #4b4b4b;
+}
+.keys-checkbox input::before {
+  content: "";
   position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
   top: 50%;
-  padding: 4em 1em 1em 1em;
-  border-radius: 0.62em;
-  background-color: #24272e;
-  box-shadow: 0 2em 4em rgba(7, 0, 53, 0.25);
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #8c8c8c;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
 }
-.white-key {
-  width: 4.37em;
-  height: 17.5em;
-  background-color: #ffffff;
-  border-radius: 0 0 0.3em 0.3em;
-  border: 2px solid #24272e;
-  box-sizing: border-box;
+.keys-checkbox input:checked::before {
+  left: 35px;
+  background: #fff;
+}
+.piano-keys {
+  display: flex;
+  list-style: none;
+  margin-top: 40px;
+}
+.piano-keys .key {
   cursor: pointer;
+  user-select: none;
+  position: relative;
+  text-transform: uppercase;
 }
-.white-key:hover {
-  background-color: #ebebeb;
+.piano-keys .black {
+  z-index: 2;
+  width: 44px;
+  height: 140px;
+  margin: 0 -22px 0 -22px;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(#333, #000);
 }
-.black-key {
-  width: 2.5em;
-  height: 10em;
-  border-radius: 0 0 0.3em 0.3em;
-  box-sizing: border-box;
+.piano-keys .black.active {
+  box-shadow: inset -5px -10px 10px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom, #000, #434343);
+}
+.piano-keys .white {
+  height: 230px;
+  width: 70px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  background: linear-gradient(#fff 96%, #eee 4%);
+}
+.piano-keys .white.active {
+  box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+}
+.piano-keys .key span {
   position: absolute;
-  background-color: #070a0f;
-  cursor: pointer;
+  bottom: 20px;
+  width: 100%;
+  color: #a2a2a2;
+  font-size: 1.13rem;
+  text-align: center;
 }
-.black-key:hover {
-  background-color: #24272e;
+.piano-keys .key.hide span {
+  display: none;
 }
-.black-key:nth-child(1) {
-  left: 4em;
-}
-.black-key:nth-child(2) {
-  left: 8.37em;
-}
-.black-key:nth-child(3) {
-  left: 17.12em;
-}
-.black-key:nth-child(4) {
-  left: 21.5em;
-}
-.black-key:nth-child(5) {
-  left: 25.87em;
-}
-.black-key:nth-child(6) {
-  left: 34.62em;
-}
-.black-key:nth-child(7) {
-  left: 39em;
-}
-.black-key:nth-child(8) {
-  left: 47.75em;
-}
-.black-key:nth-child(9) {
-  left: 52.12em;
-}
-.black-key:nth-child(10) {
-  left: 56.5em;
+.piano-keys .black span {
+  bottom: 13px;
+  color: #888888;
 }
 
-@media screen and (max-width: 1000px) {
-  .piano-container {
-    font-size: 0.7em;
+@media screen and (max-width: 815px) {
+  .wrapper {
+    padding: 25px;
+  }
+  header {
+    flex-direction: column;
+  }
+  header :where(h2, .column) {
+    margin-bottom: 13px;
+  }
+  .volume-slider input {
+    max-width: 100px;
+  }
+  .piano-keys {
+    margin-top: 20px;
+  }
+  .piano-keys .key:where(:nth-child(9), :nth-child(10)) {
+    display: none;
+  }
+  .piano-keys .black {
+    height: 100px;
+    width: 40px;
+    margin: 0 -20px 0 -20px;
+  }
+  .piano-keys .white {
+    height: 180px;
+    width: 60px;
   }
 }
-@media screen and (max-width: 700px) {
-  .piano-container {
-    font-size: 0.5em;
+
+@media screen and (max-width: 615px) {
+  .piano-keys .key:nth-child(13),
+  .piano-keys .key:nth-child(14),
+  .piano-keys .key:nth-child(15),
+  .piano-keys .key:nth-child(16),
+  .piano-keys .key :nth-child(17) {
+    display: none;
   }
-}
-@media screen and (max-width: 500px) {
-  .piano-container {
-    font-size: 0.3em;
+  .piano-keys .white {
+    width: 50px;
   }
 }
